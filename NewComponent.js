@@ -1,8 +1,12 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
 
-const NewComponent = (props) => (
-  <Text style={{backgroundColor: props.color}}>{props.value}</Text>
+const NewComponentNoClick = ({ value, ...rest }) => (
+  <View {...rest}>
+    <Text>{value}</Text>
+  </View>
 );
 
-export default NewComponent;
+const NewComponent = ({ value, ...rest }) => <Text {...rest}>{value}</Text>;
+
+export { NewComponent, NewComponentNoClick };
