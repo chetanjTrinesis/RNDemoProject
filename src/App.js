@@ -1,10 +1,13 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import store from "./store";
+
 import Page1 from "./Page1";
 import Page2 from "./Page2";
+import Page3 from "./Page3";
 
 const Stack = createStackNavigator();
 
@@ -18,30 +21,20 @@ class App extends React.Component {
 
   componentDidMount() {}
 
-  componentWillUnmount() {
-    //4
-  }
-
   render() {
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="homepage" component={Page1} />
-          <Stack.Screen name="page2" component={Page2} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store()}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="homepage" component={Page1} />
+            <Stack.Screen name="page2" component={Page2} />
+            <Stack.Screen name="page3" component={Page3} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "lightblue",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 // function App() {
 //   return (

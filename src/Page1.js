@@ -1,15 +1,32 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import { connect } from "react-redux";
+import { setUser, resetUser } from "./actions";
 
-export default class Page1 extends React.Component {
-  didClick = () => {
-    this.props.navigation.navigate("page2", { text: "Chetan" });
+class Page1 extends React.Component {
+  didClick = (pageName) => {
+    this.props.setUser({
+      firstName: "Sumeet",
+      lastName: "Kale",
+    });
+
+    // this.props.navigation.navigate(pageName, { text: "Chetan" });
+  };
+
+  didReset = () => {
+    this.props.resetUser();
   };
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.page} onPress={this.didClick}>
-          Page 1
+        <Text style={styles.page}>This is Page 1</Text>
+        <Text style={styles.page}>{`First Name: ${this.props.myUser.firstName}`}</Text>
+        <Text style={styles.page}>{`Last Name: ${this.props.myUser.lastName}`}</Text>
+        <Text style={styles.page} onPress={() => this.didClick("page2")}>
+          Go to Page 2
+        </Text>
+        <Text style={styles.page} onPress={() => this.didReset()}>
+          Go to Page 3
         </Text>
       </View>
     );
@@ -54,3 +71,7 @@ const styles = StyleSheet.create({
 //     <Text>{textValue}</Text>
 //   </View>
 // );
+
+const ReduxConnectedComponent = connect((state) => ({ myUser: state.user }), { setUser, resetUser })(Page1);
+
+export default ReduxConnectedComponent;

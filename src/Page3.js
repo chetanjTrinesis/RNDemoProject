@@ -1,13 +1,10 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { connect } from "react-redux";
 
-class Page2 extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.page}>{`First Name: ${this.props.myUser.firstName}`}</Text>
-        <Text style={styles.page}>{`Last Name: ${this.props.myUser.lastName}`}</Text>
         <Text
           style={styles.page}
           onPress={() => {
@@ -59,5 +56,5 @@ const styles = StyleSheet.create({
 //     <Text>{textValue}</Text>
 //   </View>
 // );
-const ReduxConnectedComponent = connect((state) => ({ myUser: state.user }), {})(Page2);
-export default ReduxConnectedComponent;
+
+export default App;
